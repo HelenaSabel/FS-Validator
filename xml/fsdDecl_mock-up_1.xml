@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schemas/fsdDecl-val.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Feaure structure mock-up file</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>This is a mock up to try the validator on.</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Born-digital</p>
+         </sourceDesc>
+      </fileDesc>
+  </teiHeader>
+   
+   <fsdDecl>
+      <fsDecl type="variants.taxonomy">
+         <fDecl name="description" optional="false">
+            <fDescr>Prose description of the phenomenon</fDescr>
+            <vRange>
+               <vNot>
+                  <string/>
+               </vNot>
+            </vRange>
+         </fDecl>
+         <fDecl name="taxonomy" optional="false">
+            <fDescr>Main categorization of the type of variant</fDescr>
+            <vRange>
+  
+               <vAlt>
+                  <fs type="linguistic"/>
+                  <fs type="error"/>
+                  <fs type="material"/>
+                  <fs type="equipolent"/>
+                  <fs type="graphic"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="linguistic">
+         <fDecl name="category" optional="false">
+            <vRange>
+               <vAlt>
+                  <fs type="phonetic"/>
+                  <fs type="morphosyntactic"/>
+                  <fs type="lexical"/>
+                  <fs type="language-transfer"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="phonetic">
+         <fsDescr>Features to describe phonetic change</fsDescr>
+         <fDecl name="process" optional="false">
+            <fDescr>Feature to represent the main type of sound change</fDescr>
+            <vRange>
+               <vAlt>
+                  <symbol value="addition"/>
+                  <symbol value="reduction"/>
+                  <fs type="alteration"/>
+                  
+                  <!-- Temporary for explanation of doublets-->
+                  <symbol value="parallel-evolution"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+         <fDecl name="position" optional="true">
+            <fDescr>Location of the phenomenon in the sound chain</fDescr>
+            <vRange>
+               <vAlt>
+                  <symbol value="start"/>
+                  <symbol value="end"/>
+                  <symbol value="intern"/>
+                  <symbol value="intervocalic"/>
+                  <symbol value="interconsonantic"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+         <fDecl name="constriction" optional="false">
+            <vRange>
+               <vAlt>
+                  <binary value="true"/>
+                  <binary value="false"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="alteration">
+         <fDecl name="mode" optional="false">
+            <vRange>
+               <vAlt>
+                  <fs type="assimilation"/>
+                  <symbol value="dissimilation"/>
+                  <symbol value="metathesis"/>
+                  <symbol value="lenition"/>
+                  <symbol value="fortition"/>
+                  <symbol value="analogy"/>
+                  <symbol value="sound-loss"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="assimilation">
+         <fDecl name="direction" optional="true">
+            <vRange>
+               <vColl>
+                  <vAlt>
+                     <symbol value="adjacent"/>
+                     <symbol value="long-distance"/>
+                  </vAlt>
+                  <vAlt>
+                     <symbol value="regressive"/>
+                     <symbol value="progressive"/>
+                  </vAlt>
+               </vColl>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="morphosyntatic">
+         <fDecl name="POS" optional="false">
+            <vRange>
+               <vAlt>
+                  <symbol value="N"/>
+                  <fs type="VB"/>
+                  <fs type="PR"/>
+                  <symbol value="DET"/>
+                  <symbol value="CONJ"/>
+                  <symbol value="PREP"/>
+                  <symbol value="ADV"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+         <fDecl name="process" optional="false">
+            <fDescr>Morphological process that causes the variation (analogy, stem
+               alternation, inflective morphemes alternation)</fDescr>
+            <vRange>
+               <vAlt>
+                  <symbol value="stem"/>
+                  <symbol value="inflection"/>
+                  <symbol value="analogy"/>
+                  <symbol value="addition"/>
+                  <symbol value="sound-change"/>
+                  <fs type="alternation"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="alternation">
+         <fDecl name="lexeme" optional="false">
+            <vRange>
+               <vAlt>
+                  <vNot>
+                     <string/>
+                  </vNot>
+                  <vNot>
+                     <string/>
+                  </vNot>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="VB">
+         <fDecl name="stem-tense" optional="false">
+            <vRange>
+               <vAlt>
+                  <symbol value="present"/>
+                  <symbol value="past"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+         <fDecl name="agreement" optional="true">
+            <vRange>
+               <fs type="concord"/>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="concord">
+         <fsDescr>This type of feature structure encodes the features for subject-verb
+            agreement</fsDescr>
+         <fDecl name="PERS" optional="false">
+            <fDescr>Person</fDescr>
+            <vRange>
+               <vAlt>
+                  <symbol value="1"/>
+                  <symbol value="2"/>
+                  <symbol value="3"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+         <fDecl name="NUM" optional="false">
+            <fDescr>Number</fDescr>
+            <vRange>
+               <vAlt>
+                  <symbol value="sg"/>
+                  <symbol value="pl"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="PR">
+         <fDecl name="agreement" optional="true">
+            <vRange>
+               <fs type="concord"/>
+            </vRange>
+         </fDecl>
+         <fDecl name="case" optional="true">
+            <vRange>
+               <vAlt>
+                  <symbol value="nominative"/>
+                  <symbol value="accusative"/>
+                  <symbol value="dative"/>
+                  <symbol value="genitive"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+      <fsDecl type="language-transfer">
+         <fDecl name="language" optional="false">
+            <vRange>
+               <vAlt>
+                  <symbol value="sp"/>
+                  <symbol value="it"/>
+               </vAlt>
+            </vRange>
+         </fDecl>
+      </fsDecl>
+   </fsdDecl>
+</TEI>

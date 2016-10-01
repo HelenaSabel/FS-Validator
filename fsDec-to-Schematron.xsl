@@ -10,56 +10,100 @@
         <xsl:element name="schema">
             <xsl:attribute name="queryBinding">xslt2</xsl:attribute>
             <ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+            
+            <!--Variables to contain the IDs present in the Feature Structure Declaration-->
+            
+            <let name="featureIDs"
+                value="{concat($apos, string-join(//fDecl[@xml:id]/concat('#', @xml:id), $boundary), $apos)}"/>
+            <let name="fsIDs" 
+                value="{concat($apos, string-join(//fsDecl[@xml:id]/concat('#', @xml:id), $boundary), $apos)}"/>
             <pattern>
+                                
+                <rule context="@feats">
+                    <let name="values"
+                        value="for $i in tokenize(current(), '\s+') return $i"/>
+                    <assert
+                        test="
+                            every $value in $values
+                                satisfies $value = $featureIDs"
+                        >One of the values inside the @feats attribute does not match any f/@xml:id of
+                        the Feature Structure Declaration</assert>
+                </rule>
+                <rule context="@fVal">
+                    <let name="values"
+                        value="for $i in tokenize(current(), '\s+') return $i"/>
+                    <assert
+                        test="
+                        every $value in $values
+                        satisfies $value = $fsIDs"
+                        >One of the values inside the @fVal attribute does not match any fs/@xml:id of
+                        the Feature Structure Declaration</assert>
+                </rule>
                 <xsl:apply-templates select="//fsdDecl"/>
             </pattern>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="fsDecl[@type]">
+    <xsl:template match="fsDecl">
         <xsl:variable name="optionalFeatures" select="fDecl[@optional eq 'true']/@name"/>
         <xsl:variable name="optionalFeaturesList"
             select="concat($apos, string-join($optionalFeatures, $boundary), $apos)"/>
-        <xsl:variable name="mandatoryFeatures" select="fDecl[@optional eq 'false']/@name"/>
+        
+        <!--If there is no @optional attribute with a 'true' value, that feature is considered mandatory-->
+        
+        <xsl:variable name="mandatoryFeatures" select="fDecl[not(@optional eq 'true')]/@name"/>
         <xsl:variable name="mandatoryFeaturesList"
             select="concat($apos, string-join($mandatoryFeatures, $boundary), $apos)"/>
         <xsl:variable name="countMandatory" select="count($mandatoryFeatures)"/>
-        <xsl:element name="rule">
-            <xsl:attribute name="context">
-                <xsl:value-of
-                    select="concat('tei:fs[@type eq ', $apos, current()/@type, $apos, ']')"/>
-            </xsl:attribute>
 
-            <!--Rule to check that the features used that are not declared as mandatory (that is, the optional ones) are indeed in the
+        <!-- The <fs> element has a @type attribute to discern it from others which means that the @type is unique-->
+
+        <xsl:if
+            test="current()[@type][not(@type = (preceding-sibling::fsDecl | following-sibling::fsDecl)/@type)]">
+            <xsl:element name="rule">
+
+
+                <xsl:attribute name="context">
+                    <xsl:value-of
+                        select="concat('tei:fs[not(@feats)][@type eq ', $apos, current()/@type, $apos, ']')"
+                    />
+                </xsl:attribute>
+
+
+
+                <!--Rule to check that the features used that are not declared as mandatory (that is, the optional ones) are indeed in the
             feature structure declaration -->
 
-            <xsl:if test="count($optionalFeatures) gt 0">
-                <xsl:element name="assert">
-                    <xsl:attribute name="test">
-                        <xsl:value-of
-                            select="concat('if (count(./tei:f) gt ', $countMandatory, ') then tei:f[@name = (', $optionalFeaturesList, ')] else true()')"
-                        />
-                    </xsl:attribute> The mandatory features are <xsl:value-of
-                        select="$mandatoryFeaturesList"/>; and the optional ones are <xsl:value-of
-                        select="$optionalFeaturesList"/>. There is a feature in this structure that
-                    has not been declared </xsl:element>
-            </xsl:if>
-
-            <!--Rule to check that the non-optional features are in the
-            feature structure declaration -->
-
-            <xsl:if test="count($mandatoryFeatures) gt 0">
-                <xsl:for-each select="$mandatoryFeatures">
+                <xsl:if test="count($optionalFeatures) gt 0">
                     <xsl:element name="assert">
                         <xsl:attribute name="test">
                             <xsl:value-of
-                                select="concat('tei:f[@name eq ', $apos, current(), $apos, ']')"/>
-                        </xsl:attribute> The feature “<xsl:value-of select="current()"/>” is missing
-                    </xsl:element>
-                </xsl:for-each>
-            </xsl:if>
-        </xsl:element>
+                                select="concat('if (count(./tei:f) gt ', $countMandatory, ') then tei:f[@name = (', $optionalFeaturesList, ')] else true()')"
+                            />
+                        </xsl:attribute> The mandatory features are <xsl:value-of
+                            select="$mandatoryFeaturesList"/>; and the optional ones are
+                            <xsl:value-of select="$optionalFeaturesList"/>. There is a feature in
+                        this structure that has not been declared </xsl:element>
+                </xsl:if>
+
+                <!--Rule to check that the non-optional features are in the
+            feature structure declaration -->
+
+                <xsl:if test="count($mandatoryFeatures) gt 0">
+                    <xsl:for-each select="$mandatoryFeatures">
+                        <xsl:element name="assert">
+                            <xsl:attribute name="test">
+                                <xsl:value-of
+                                    select="concat('tei:f[@name eq ', $apos, current(), $apos, ']')"
+                                />
+                            </xsl:attribute> The feature “<xsl:value-of select="current()"/>” is
+                            missing </xsl:element>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:element>
+        </xsl:if>
         <xsl:apply-templates select="fDecl"/>
     </xsl:template>
+    
     <xsl:template match="fDecl">
         <xsl:element name="rule">
             <xsl:attribute name="context">
@@ -79,10 +123,10 @@
                         </xsl:attribute> The element <xsl:value-of select="current()/name()"/> is
                         required </xsl:element>
                     <xsl:element name="report">
-                        <xsl:attribute name="test"><xsl:value-of select="concat('tei:', current()/name(), '[not(*)]')"/>
-                        </xsl:attribute>This feature must contain a <xsl:value-of select="current()/name()"/> element
-                        with content
-                    </xsl:element>
+                        <xsl:attribute name="test"><xsl:value-of
+                                select="concat('tei:', current()/name(), '[not(*)]')"/>
+                        </xsl:attribute>This feature must contain a <xsl:value-of
+                            select="current()/name()"/> element with content </xsl:element>
                 </xsl:for-each>
             </xsl:if>
             <xsl:if test="vRange/vAlt/count(distinct-values(*/name())) = 1">
@@ -163,13 +207,12 @@
                     <xsl:element name="assert">
                         <xsl:attribute name="test">
                             <xsl:value-of
-                                select="concat('tei:fs[@name =', $apos, current(), $apos, ']')"
-                            />
-                        </xsl:attribute> Required fs of type <xsl:value-of
-                            select="current()/@type"/>
+                                select="concat('tei:fs[@name =', $apos, current(), $apos, ']')"/>
+                        </xsl:attribute> Required fs of type <xsl:value-of select="current()/@type"
+                        />
                     </xsl:element>
                 </xsl:for-each>
-               
+
             </xsl:if>
         </xsl:element>
 

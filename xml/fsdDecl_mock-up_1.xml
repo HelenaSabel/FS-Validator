@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../schemas/fsdDecl-val.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../schemas/fs-schema.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader>
+   <teiHeader>
       <fileDesc>
          <titleStmt>
             <title>Feaure structure mock-up file</title>
@@ -13,11 +13,11 @@
             <p>Born-digital</p>
          </sourceDesc>
       </fileDesc>
-  </teiHeader>
-   
+   </teiHeader>
+
    <fsdDecl>
-      <fsDecl type="variants.taxonomy">
-         <fDecl name="description" optional="false">
+      <fsDecl type="all">
+         <fDecl name="description">
             <fDescr>Prose description of the phenomenon</fDescr>
             <vRange>
                <vNot>
@@ -25,10 +25,10 @@
                </vNot>
             </vRange>
          </fDecl>
-         <fDecl name="taxonomy" optional="false">
+         <fDecl name="taxonomy">
             <fDescr>Main categorization of the type of variant</fDescr>
             <vRange>
-  
+
                <vAlt>
                   <fs type="linguistic"/>
                   <fs type="error"/>
@@ -40,7 +40,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="linguistic">
-         <fDecl name="category" optional="false">
+         <fDecl name="category" xml:id="linguistic">
             <vRange>
                <vAlt>
                   <fs type="phonetic"/>
@@ -53,15 +53,13 @@
       </fsDecl>
       <fsDecl type="phonetic">
          <fsDescr>Features to describe phonetic change</fsDescr>
-         <fDecl name="process" optional="false">
+         <fDecl name="process">
             <fDescr>Feature to represent the main type of sound change</fDescr>
             <vRange>
                <vAlt>
                   <symbol value="addition"/>
                   <symbol value="reduction"/>
                   <fs type="alteration"/>
-                  
-                  <!-- Temporary for explanation of doublets-->
                   <symbol value="parallel-evolution"/>
                </vAlt>
             </vRange>
@@ -78,7 +76,7 @@
                </vAlt>
             </vRange>
          </fDecl>
-         <fDecl name="constriction" optional="false">
+         <fDecl name="constriction">
             <vRange>
                <vAlt>
                   <binary value="true"/>
@@ -88,7 +86,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="alteration">
-         <fDecl name="mode" optional="false">
+         <fDecl name="mode" xml:id="mod">
             <vRange>
                <vAlt>
                   <fs type="assimilation"/>
@@ -119,7 +117,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="morphosyntatic">
-         <fDecl name="POS" optional="false">
+         <fDecl name="POS">
             <vRange>
                <vAlt>
                   <symbol value="N"/>
@@ -132,9 +130,9 @@
                </vAlt>
             </vRange>
          </fDecl>
-         <fDecl name="process" optional="false">
-            <fDescr>Morphological process that causes the variation (analogy, stem
-               alternation, inflective morphemes alternation)</fDescr>
+         <fDecl name="process">
+            <fDescr>Morphological process that causes the variation (analogy, stem alternation,
+               inflective morphemes alternation)</fDescr>
             <vRange>
                <vAlt>
                   <symbol value="stem"/>
@@ -148,7 +146,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="alternation">
-         <fDecl name="lexeme" optional="false">
+         <fDecl name="lexeme">
             <vRange>
                <vAlt>
                   <vNot>
@@ -162,7 +160,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="VB">
-         <fDecl name="stem-tense" optional="false">
+         <fDecl name="stem-tense">
             <vRange>
                <vAlt>
                   <symbol value="present"/>
@@ -179,7 +177,7 @@
       <fsDecl type="concord">
          <fsDescr>This type of feature structure encodes the features for subject-verb
             agreement</fsDescr>
-         <fDecl name="PERS" optional="false">
+         <fDecl name="PERS">
             <fDescr>Person</fDescr>
             <vRange>
                <vAlt>
@@ -189,7 +187,7 @@
                </vAlt>
             </vRange>
          </fDecl>
-         <fDecl name="NUM" optional="false">
+         <fDecl name="NUM">
             <fDescr>Number</fDescr>
             <vRange>
                <vAlt>
@@ -217,7 +215,7 @@
          </fDecl>
       </fsDecl>
       <fsDecl type="language-transfer">
-         <fDecl name="language" optional="false">
+         <fDecl name="language">
             <vRange>
                <vAlt>
                   <symbol value="sp"/>

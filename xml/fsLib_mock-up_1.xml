@@ -19,7 +19,7 @@
             <fvLib>
                  <fs xml:id="apocope">
                 <f name="taxonomy">
-                    <fs type="linguistic">
+                    <fs type="linguistic" feats="#mod">
                         <f name="category">
                             
                             <fs type="phonetic">

@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>MeThAL Personography: Alsatian Theater Character Features</title>
+        <respStmt>
+          <resp>TEI encoding</resp>
+          <name>Pablo Ruiz</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>LiLPa - Université de Strasbourg</publisher>
+        <publisher>MeThAL project</publisher>
+        <availability status="free">
+          <licence target="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons
+            BY-NC</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Digitally born</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <p>A feature structure (FS) for character description is declared. Using this, <gi>person</gi>
+        elements will encode character information below.</p>
+      <p>Besides values for the FS, the <gi>person</gi> elements contain, when available, the cast
+        list information on which the character features are based, in a <gi>note</gi> element
+        through a <att>type</att> attribute with the value <emph>roleDesc</emph>
+      </p>
+      <fsdDecl>
+        <fsDecl type="character_specification">
+          <fsDescr>Feature structure for character description. Inspired by <bibl><ref
+                target="http://archive.sciendo.com/HSSR/hssr.2017.6.issue-1/hssr-2017-0007/hssr-2017-0007.pdf"
+              />Galleron (2014)</bibl>. Intermediate hierarchy levels were added to group related
+            features. Some features and values were added.</fsDescr>
+          <fDecl name="specification_type">
+            <vRange>
+              <vColl>
+                <fs type="mimetic_features"/>
+                <fs type="synthetic_features"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="mimetic_features">
+          <fsDescr>Features that endow characters with human-like traits.</fsDescr>
+          <fDecl name="general" optional="true">
+            <vRange>
+              <fs type="general_features"/>
+            </vRange>
+          </fDecl>
+          <fDecl name="socio_economic_status" optional="true">
+            <vRange>
+              <vColl>
+                <fs type="professional_activities"/>
+                <fs type="socio_economic_other"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+          <fDecl name="relation_position" optional="true">
+            <fDescr>Character position in different types of relation: family (e.g. daughter),
+              personal (e.g. ex-wife), professional (e.g. manager)</fDescr>
+            <vRange>
+              <fs type="relation_type"/>
+            </vRange>
+          </fDecl>
+          <fDecl name="language" optional="true">
+            <vRange>
+              <string/>
+            </vRange>
+            <vDefault>
+              <string>Alsatian</string>
+            </vDefault>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="general_features">
+          <fDecl name="temper" optional="true">
+            <vRange>
+              <string/>
+            </vRange>
+          </fDecl>
+          <fDecl name="age_features">
+            <vRange>
+              <fs type="age"/>
+            </vRange>
+          </fDecl>
+          <fDecl name="sex" optional="true">
+            <fDescr>Character gender as explicit from the dramatis personae. M for Male, F for
+              Female, U for Unknown, B for collective characters where the character list makes it
+              clear both genders are part of the group</fDescr>
+            <vRange>
+              <vAlt>
+                <symbol value="M" xml:id="SM"/>
+                <symbol value="F" xml:id="SF"/>
+                <symbol value="U" xml:id="SU"/>
+                <symbol value="B" xml:id="SB"/>
+              </vAlt>
+            </vRange>
+          </fDecl>
+          <fDecl name="nationality" optional="true">
+            <vRange>
+              <string/>
+            </vRange>
+          </fDecl>
+          <fDecl name="ontological_category" optional="true">
+            <vRange>
+              <vAlt>
+                <symbol value="human" xml:id="OCH"/>
+                <symbol value="non-human" xml:id="OCNH"/>
+                <symbol value="semi-human" xml:id="OCSH"/>
+              </vAlt>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="age">
+          <fDecl name="age_value" optional="false">
+            <vRange>
+              <vAlt>
+                <numeric value="1" max="100"/>
+                <symbol value="young" xml:id="AGY"/>
+                <symbol value="old" xml:id="AGO"/>
+                <symbol value="child" xml:id="AGC"/>
+                <symbol value="adult" xml:id="AGA"/>
+                <symbol value="unknown" xml:id="AGU"/>
+              </vAlt>
+            </vRange>
+          </fDecl>
+          <fDecl name="precision" optional="true">
+            <vRange>
+              <vAlt>
+                <symbol value="exact"/>
+                <symbol value="approximate"/>
+              </vAlt>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="relation_type">
+          <fsDescr>Type of relation where the character position will e considered</fsDescr>
+          <fDecl name="family_position" optional="true">
+            <vRange>
+              <vColl>
+                <symbol value="father" xml:id="FPF"/>
+                <symbol value="son" xml:id="FPSON"/>
+                <symbol value="daughter" xml:id="FPD"/>
+                <symbol value="mother" xml:id="FPM"/>
+                <symbol value="uncle" xml:id="FPU"/>
+                <symbol value="aunt" xml:id="FPA"/>
+                <symbol value="nephew_or_niece" xml:id="FPN"/>
+                <symbol value="sister" xml:id="FPSIS"/>
+                <symbol value="brother" xml:id="FPB"/>
+                <symbol value="grandfather" xml:id="FPGF"/>
+                <symbol value="grandmother" xml:id="FPGM"/>
+                <symbol value="grandson" xml:id="FPGSON"/>
+                <symbol value="granddaughter" xml:id="FPGD"/>
+                <symbol value="cousin" xml:id="FPC"/>
+                <symbol value="stepmother" xml:id="FPSM"/>
+                <symbol value="stepfather" xml:id="FPSF"/>
+                <symbol value="stepdaughter" xml:id="FPSD"/>
+                <symbol value="stepson" xml:id="FPSS"/>
+                <symbol value="guardian" xml:id="FPG"/>
+                <symbol value="ward" xml:id="FPWA"/>
+                <symbol value="husband" xml:id="FPH"/>
+                <symbol value="ex-husband" xml:id="FPEH"/>
+                <symbol value="wife" xml:id="FPWIF"/>
+                <symbol value="ex-wife" xml:id="FPEWIF"/>
+                <symbol value="separated_husband" xml:id="FPSH"/>
+                <symbol value="separated_wife" xml:id="FPSWIF"/>
+                <symbol value="widower" xml:id="FPWIDM"/>
+                <symbol value="widow" xml:id="FPWID"/>
+                <symbol value="father-in-law" xml:id="FPFIL"/>
+                <symbol value="mother-in-law" xml:id="FPMIL"/>
+                <symbol value="brother-in-law" xml:id="FPBIL"/>
+                <symbol value="sister-in-law" xml:id="FPSIL"/>
+                <symbol value="son-in-law" xml:id="FPSONIL"/>
+                <symbol value="daughter-in-law" xml:id="FPSDIL"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+          <fDecl name="personal_position" optional="true">
+            <fDescr>Character position in a personal relation</fDescr>
+            <vRange>
+              <vColl>
+                <symbol value="friend"/>
+                <symbol value="lover"/>
+                <symbol value="suitor"/>
+                <symbol value="fiancé"/>
+                <symbol value="fiancée"/>
+                <symbol value="neighbour"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+          <fDecl name="professional_position" optional="true">
+            <fDescr>Character position in a professional relation (e.g. supervisor or subordinate).
+              This is meant to help detect power structures among characters and is generally not
+              the sameneed not be the same as the character's professional activity, although value
+              "domestic_worker" also coincides with a professional activity value in the feature
+              library.</fDescr>
+            <vRange>
+              <vColl>
+                <symbol value="domestic_worker"/>
+                <symbol value="employee/worker"/>
+                <symbol value="apprentice"/>
+                <symbol value="manager"/>
+                <symbol value="associate"/>
+                <symbol value="associated_with"/>
+                <symbol value="unknown"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="professional_activities">
+          <fsDescr>Typology of professional groups inspired by standard taxonomies (e.g. HISCO or
+            ISCO), but adapted to Alsatian society in the corpus period, see <bibl>Ruiz &amp; Werner
+              (2020) at <ref target="https://doi.org/10.5281/zenodo.4762732"/></bibl></fsDescr>
+          <fDecl name="professional_category" optional="true">
+            <vRange>
+              <vColl>
+                <symbol value="professionals_scientific_technical" xml:id="PC-mtl-pro"/>
+                <symbol value="intermediate_professionals" xml:id="PC-mtl-inte"/>
+                <symbol value="service_and_sales" xml:id="PC-mtl-seSa"/>
+                <symbol value="crafts" xml:id="PC-mtl-craf"/>
+                <symbol value="industry_and_transportation" xml:id="PC-mtl-inTr"/>
+                <symbol value="agriculture" xml:id="PC-mtl-agri"/>
+                <symbol value="elementary_professions" xml:id="PC-mtl-elem"/>
+                <symbol value="rentiers" xml:id="PC-mtl-rent"/>
+                <symbol value="clergy" xml:id="PC-mtl-cler"/>
+                <symbol value="military" xml:id="PC-mtl-mili"/>
+                <symbol value="government_executive_officials" xml:id="PC-mtl-gov"/>
+                <symbol value="associative_world" xml:id="PC-mtl-p-asso"/>
+                <symbol value="unknown" xml:id="PC-mtl-p-unk"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+          <fDecl name="occupation" optional="true">
+            <fDescr>The list corresponds to professional occupations attested in the Alsatian
+              corpus, but abstracting away from graphical variability and from some meaning nuances.
+              E.g. <emph>Magd</emph> and <emph>Dienschtmaidel</emph> will both be represented by
+              value <emph>maid</emph>. English values were chosen to abstract away from linguistic
+              variability in the plays' cast lists, which sometimes use Alsatian and sometimes
+              standard German.</fDescr>
+            <vRange>
+              <vColl>
+                <symbol value="abbot"/>
+                <symbol value="accountant"/>
+                <symbol value="acrobat"/>
+                <symbol value="actress"/>
+                <symbol value="alarm_trumpeter_(firefighter)"/>
+                <symbol value="apprentice"/>
+                <symbol value="architect"/>
+                <symbol value="artist"/>
+                <symbol value="artistic_horse_rider"/>
+                <symbol value="assessor"/>
+                <symbol value="association_leader"/>
+                <symbol value="association_member"/>
+                <symbol value="association_official"/>
+                <symbol value="astronomer"/>
+                <symbol value="astronomer_assistant"/>
+                <symbol value="athlete"/>
+                <symbol value="aviator"/>
+                <symbol value="baker"/>
+                <symbol value="bandmaster_(military)"/>
+                <symbol value="bank_clerk"/>
+                <symbol value="bank_director"/>
+                <symbol value="banker"/>
+                <symbol value="barber"/>
+                <symbol value="barber_apprentice"/>
+                <symbol value="basket_maker"/>
+                <symbol value="basket_repairer"/>
+                <symbol value="bear"/>
+                <symbol value="beater"/>
+                <symbol value="bicycle_store_owner"/>
+                <symbol value="blacksmith"/>
+                <symbol value="blacksmith_apprentice"/>
+                <symbol value="bookbinder"/>
+                <symbol value="brick_manufacturer"/>
+                <symbol value="bricklayer"/>
+                <symbol value="brigadier"/>
+                <symbol value="building_manager"/>
+                <symbol value="businessman"/>
+                <symbol value="butcher"/>
+                <symbol value="town_councilor"/>
+                <symbol value="can_manufacturer"/>
+                <symbol value="captain"/>
+                <symbol value="captain_(military)"/>
+                <symbol value="captain_of_the_knights"/>
+                <symbol value="captain’s_adjudant"/>
+                <symbol value="car_salesman"/>
+                <symbol value="carpenter"/>
+                <symbol value="castle_administrator"/>
+                <symbol value="chair_maker"/>
+                <symbol value="chief_judge"/>
+                <symbol value="chief_of_security"/>
+                <symbol value="chimney_sweeper"/>
+                <symbol value="choir_member"/>
+                <symbol value="circus_director"/>
+                <symbol value="circus_worker"/>
+                <symbol value="city_council_clerk"/>
+                <symbol value="city_councillor"/>
+                <symbol value="civil_servant/administration_official"/>
+                <symbol value="association_president"/>
+                <symbol value="clairvoyant"/>
+                <symbol value="clerk"/>
+                <symbol value="clown"/>
+                <symbol value="coachman"/>
+                <symbol value="colonel_(military)"/>
+                <symbol value="companion"/>
+                <symbol value="composer"/>
+                <symbol value="conductor_(music)"/>
+                <symbol value="confectioner"/>
+                <symbol value="conman"/>
+                <symbol value="contractor"/>
+                <symbol value="cook"/>
+                <symbol value="cooper"/>
+                <symbol value="corn_operator_(chiropodist)"/>
+                <symbol value="court_assistant"/>
+                <symbol value="court_bailiff"/>
+                <symbol value="court_secretary"/>
+                <symbol value="sworn_translator"/>
+                <symbol value="court_staff"/>
+                <symbol value="court_usher"/>
+                <symbol value="craftsman"/>
+                <symbol value="custodian_(asylum)"/>
+                <symbol value="customs_officer"/>
+                <symbol value="dancer"/>
+                <symbol value="day_labourer"/>
+                <symbol value="delegate"/>
+                <symbol value="deliverer/helper"/>
+                <symbol value="deputy_mayor"/>
+                <symbol value="detective"/>
+                <symbol value="diplomat"/>
+                <symbol value="director_in_a_Fashion_House"/>
+                <symbol value="director_of_a_real_estate_agency"/>
+                <symbol value="director_of_the_church_election_committee"/>
+                <symbol value="director_of_the_democratic_election_committee"/>
+                <symbol value="director_of_the_liberal_election_committee"/>
+                <symbol value="district_director"/>
+                <symbol value="doctor"/>
+                <symbol value="domestic_cleaner"/>
+                <symbol value="domestic_worker"/>
+                <symbol value="doorman"/>
+                <symbol value="driver"/>
+                <symbol value="engineer"/>
+                <symbol value="estate_administrator"/>
+                <symbol value="factory_director"/>
+                <symbol value="factory_owner"/>
+                <symbol value="factory_worker"/>
+                <symbol value="fairground_stand_owner"/>
+                <symbol value="fanfare_president"/>
+                <symbol value="farm_worker"/>
+                <symbol value="farmer"/>
+                <symbol value="farmer_leader"/>
+                <symbol value="mayor"/>
+                <symbol value="village_councilor"/>
+                <symbol value="firefighter"/>
+                <symbol value="firefighter_(caporal)"/>
+                <symbol value="firefighter_(sergeant)"/>
+                <symbol value="firefighter_director"/>
+                <symbol value="fountain_maker"/>
+                <symbol value="funeral_service_clerk"/>
+                <symbol value="furniture_dealer"/>
+                <symbol value="gardener"/>
+                <symbol value="gendarm"/>
+                <symbol value="gendarme"/>
+                <symbol value="grape_picker"/>
+                <symbol value="grocer"/>
+                <symbol value="hairdresser"/>
+                <symbol value="hairdresser_apprentice"/>
+                <symbol value="hangman"/>
+                <symbol value="head_farm_worker"/>
+                <symbol value="head_firefighter"/>
+                <symbol value="head_housemaid"/>
+                <symbol value="horse_farmer"/>
+                <symbol value="hotel_helper"/>
+                <symbol value="hotel_maid"/>
+                <symbol value="hotel_owner"/>
+                <symbol value="housekeeper"/>
+                <symbol value="hunter"/>
+                <symbol value="hypnotizer"/>
+                <symbol value="inn_attendant"/>
+                <symbol value="inn_maid"/>
+                <symbol value="insurance_agent"/>
+                <symbol value="marriage_broker"/>
+                <symbol value="insurance_clerk"/>
+                <symbol value="insurance_inspector"/>
+                <symbol value="journalist"/>
+                <symbol value="judge"/>
+                <symbol value="jurist"/>
+                <symbol value="juror"/>
+                <symbol value="knight"/>
+                <symbol value="labourer"/>
+                <symbol value="lady’s_maid"/>
+                <symbol value="landlord"/>
+                <symbol value="large_farmer"/>
+                <symbol value="large_manufacturer"/>
+                <symbol value="laundress"/>
+                <symbol value="law_advisor"/>
+                <symbol value="lawyer"/>
+                <symbol value="lawyer_in_training"/>
+                <symbol value="legal_counsel"/>
+                <symbol value="member_of_veterans_association"/>
+                <symbol value="lieutenant_(military)"/>
+                <symbol value="lion_sheperd"/>
+                <symbol value="locksmith"/>
+                <symbol value="lottery_agent"/>
+                <symbol value="luggage_carrier"/>
+                <symbol value="magician"/>
+                <symbol value="maid"/>
+                <symbol value="mail_carrier"/>
+                <symbol value="major_(military)"/>
+                <symbol value="manager"/>
+                <symbol value="manufacturer"/>
+                <symbol value="marshal_of_the_court"/>
+                <symbol value="master_blacksmith"/>
+                <symbol value="master_cooper"/>
+                <symbol value="master_hairdresser"/>
+                <symbol value="master_laundress"/>
+                <symbol value="master_of_arms"/>
+                <symbol value="master_shoemaker"/>
+                <symbol value="master_taylor"/>
+                <symbol value="master_upholsterer"/>
+                <symbol value="matchmaker"/>
+                <symbol value="medical_doctor"/>
+                <symbol value="member_of_election_committee"/>
+                <symbol value="member_of_the_church_council"/>
+                <symbol value="merchant"/>
+                <symbol value="messenger"/>
+                <symbol value="messenger/deliverer/helper"/>
+                <symbol value="midwife"/>
+                <symbol value="military"/>
+                <symbol value="military_(retired)"/>
+                <symbol value="military_man_(war_veteran)"/>
+                <symbol value="military_men"/>
+                <symbol value="milkman"/>
+                <symbol value="miller"/>
+                <symbol value="model"/>
+                <symbol value="monk"/>
+                <symbol value="mountain_guide"/>
+                <symbol value="mounted_messenger"/>
+                <symbol value="movie_director"/>
+                <symbol value="music_copyist"/>
+                <symbol value="music_teacher"/>
+                <symbol value="musician"/>
+                <symbol value="musketeer"/>
+                <symbol value="newspaper_editor"/>
+                <symbol value="newspaper_publisher"/>
+                <symbol value="night_watchman"/>
+                <symbol value="notary"/>
+                <symbol value="office_helper"/>
+                <symbol value="office_manager"/>
+                <symbol value="office_worker"/>
+                <symbol value="officer_(military)"/>
+                <symbol value="one-year_volunteer"/>
+                <symbol value="orderly_(military)"/>
+                <symbol value="organist"/>
+                <symbol value="orphanage_inspector"/>
+                <symbol value="page"/>
+                <symbol value="painter"/>
+                <symbol value="painter_(artist)"/>
+                <symbol value="parson"/>
+                <symbol value="pastor"/>
+                <symbol value="pastry_baker"/>
+                <symbol value="pensioner"/>
+                <symbol value="former_baker"/>
+                <symbol value="pharmacist"/>
+                <symbol value="pharmacy_assistant"/>
+                <symbol value="philosophy_student"/>
+                <symbol value="photographer"/>
+                <symbol value="pianist"/>
+                <symbol value="piano_teacher"/>
+                <symbol value="piano_tuner"/>
+                <symbol value="piano_tuner_apprentice"/>
+                <symbol value="pig_farmer"/>
+                <symbol value="poet"/>
+                <symbol value="police_commissioner"/>
+                <symbol value="police_inspector"/>
+                <symbol value="police_secretary"/>
+                <symbol value="policeman"/>
+                <symbol value="policemant"/>
+                <symbol value="porcelain_merchant"/>
+                <symbol value="porter"/>
+                <symbol value="post_office_director"/>
+                <symbol value="pot_repairer"/>
+                <symbol value="president_of_the_court"/>
+                <symbol value="electoral_committee_president"/>
+                <symbol value="president_of_veterans_association"/>
+                <symbol value="cavalry_master"/>
+                <symbol value="priest"/>
+                <symbol value="prison_guard"/>
+                <symbol value="private_teacher"/>
+                <symbol value="professor"/>
+                <symbol value="public_prosecutor"/>
+                <symbol value="purser_(military)"/>
+                <symbol value="quarry_owner"/>
+                <symbol value="ranger"/>
+                <symbol value="ranger_assistant"/>
+                <symbol value="real_estate_agent"/>
+                <symbol value="recruitment_agency_manager"/>
+                <symbol value="rentier"/>
+                <symbol value="city_council_candidate"/>
+                <symbol value="master_locksmith"/>
+                <symbol value="sausage_maker"/>
+                <symbol value="smoking_pipe_maker"/>
+                <symbol value="reservist"/>
+                <symbol value="restaurateur"/>
+                <symbol value="retired_farmer"/>
+                <symbol value="rural_policeman"/>
+                <symbol value="safety_inspector"/>
+                <symbol value="sailor"/>
+                <symbol value="salesman"/>
+                <symbol value="sand_maker"/>
+                <symbol value="sawmill_owner"/>
+                <symbol value="sawyer"/>
+                <symbol value="scholar"/>
+                <symbol value="schoolmaster"/>
+                <symbol value="scrap_collector"/>
+                <symbol value="sculptor"/>
+                <symbol value="seamstress"/>
+                <symbol value="secretary"/>
+                <symbol value="association_secretary"/>
+                <symbol value="sequestrator"/>
+                <symbol value="sergent-major_de_zouaves"/>
+                <symbol value="servant_of_the_Emir"/>
+                <symbol value="settler"/>
+                <symbol value="sewer"/>
+                <symbol value="sheperd"/>
+                <symbol value="shepherd"/>
+                <symbol value="cheesemaker"/>
+                <symbol value="shipbuilder"/>
+                <symbol value="shoemaker"/>
+                <symbol value="shoemaker_apprentice"/>
+                <symbol value="skipper"/>
+                <symbol value="small_farmer"/>
+                <symbol value="soapmaker"/>
+                <symbol value="soldier"/>
+                <symbol value="speculator"/>
+                <symbol value="spice_merchant"/>
+                <symbol value="sports_club_president"/>
+                <symbol value="stable_lad"/>
+                <symbol value="state_prosecutor"/>
+                <symbol value="steam_engine_fireman"/>
+                <symbol value="stonemason"/>
+                <symbol value="student"/>
+                <symbol value="stylist"/>
+                <symbol value="sub-officer_(military)"/>
+                <symbol value="sweeper"/>
+                <symbol value="swineherd"/>
+                <symbol value="taverner/innkeeper"/>
+                <symbol value="postal_service_collaborator"/>
+                <symbol value="taylor"/>
+                <symbol value="taylor_(worker)"/>
+                <symbol value="taylor_apprentice"/>
+                <symbol value="teacher"/>
+                <symbol value="telegraph_messenger"/>
+                <symbol value="textile_merchant"/>
+                <symbol value="town_councillor"/>
+                <symbol value="theater_director"/>
+                <symbol value="reciter"/>
+                <symbol value="tinker"/>
+                <symbol value="torch_bearer"/>
+                <symbol value="town_crier"/>
+                <symbol value="train_driver"/>
+                <symbol value="trainee"/>
+                <symbol value="tramway_driver"/>
+                <symbol value="traveling_salesman"/>
+                <symbol value="typist"/>
+                <symbol value="umbrella_repairer"/>
+                <symbol value="undercover_policeman"/>
+                <symbol value="undermaid"/>
+                <symbol value="undertaker"/>
+                <symbol value="upholsterer"/>
+                <symbol value="upholsterer_apprentice"/>
+                <symbol value="valet"/>
+                <symbol value="veterinary"/>
+                <symbol value="vicar"/>
+                <symbol value="village_elder"/>
+                <symbol value="vinegar_boiler"/>
+                <symbol value="violin_teacher"/>
+                <symbol value="waiter"/>
+                <symbol value="waitress"/>
+                <symbol value="watchman"/>
+                <symbol value="watchman/policeman"/>
+                <symbol value="wig_maker"/>
+                <symbol value="wine_maker"/>
+                <symbol value="wine_merchant"/>
+                <symbol value="wine_sales_representative"/>
+                <symbol value="wizard"/>
+                <symbol value="wolf"/>
+                <symbol value="woodcutter"/>
+                <symbol value="worker"/>
+                <symbol value="wrestler"/>
+                <symbol value="writer"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="socio_economic_other">
+          <fsDescr>This FS encodes socio-economic traits other than those related to professional
+            occupations or categories. </fsDescr>
+          <fDecl name="social_class" optional="true">
+            <vRange>
+              <vColl>
+                <symbol value="lower_class" xml:id="SC-LC"/>
+                <symbol value="lower_middle_class" xml:id="SC-LMC"/>
+                <symbol value="middle_class" xml:id="SC-MC"/>
+                <symbol value="upper_middle_class" xml:id="SC-UMC"/>
+                <symbol value="upper_class" xml:id="SC-UC"/>
+                <symbol value="unknown" xml:id="SC-UNK"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+          <fDecl name="socioeconomic_status_cerf" optional="true">
+            <fDescr>Taxonomy for charcter description in <bibl>Cerf (1972). Le théâtre alsacien de
+                Strasbourg, miroir d'une société (1898-1939). Saisons d'Alsace, 43.</bibl></fDescr>
+            <vRange>
+              <vColl>
+                <symbol value="very_poor_people" xml:id="SEC-poor"/>
+                <symbol value="elementary_professions" xml:id="SEC-elem"/>
+                <symbol value="crafts" xml:id="SEC-craf"/>
+                <symbol value="employees" xml:id="SEC-emp"/>
+                <symbol value="rentiers" xml:id="SEC-rent"/>
+                <symbol value="liberal_professionals" xml:id="SEC-lib"/>
+                <symbol value="industrialists" xml:id="SEC-indu"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+        <fsDecl type="synthetic_features">
+          <fsDescr>Features that represent a character's role in the play</fsDescr>
+          <fDecl name="collective_character" optional="true">
+            <fDescr>Whether the character is to be played as a collective or as an
+              individual.</fDescr>
+            <vRange>
+              <binary value="true" xml:id="COLL"/>
+            </vRange>
+          </fDecl>
+          <fDecl name="actantial_role" optional="true">
+            <vRange>
+              <vColl>
+                <symbol value="lover" xml:id="ARL"/>
+                <symbol value="subject" xml:id="ARS"/>
+                <symbol value="opponent" xml:id="AROP"/>
+                <symbol value="adjuvant" xml:id="ARAD"/>
+                <symbol value="authority" xml:id="ARAUT"/>
+                <symbol value="trouble_maker" xml:id="ARTM"/>
+                <symbol value="episodic" xml:id="AREP"/>
+              </vColl>
+            </vRange>
+          </fDecl>
+        </fsDecl>
+      </fsdDecl>
+    </encodingDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <listPerson>
+        <person xml:id="mtl-per-0001">
+          <bibl corresp="#mtl-001"/>
+          <persName>Herr Starkhans</persName>
+          <note type="roleDesc">Schifffsbauer und großer Ratsherr</note>
+          <occupation>Schiffsbauer</occupation>
+          <occupation>großer Ratsherr</occupation>
+          <fs type="character_specification">
+            <f name="specification_type">
+              <fs type="mimetic_features">
+                <f name="general">
+                  <fs type="general_features">
+                    <f name="sex">
+                      <symbol value="M"/>
+                    </f>
+                  </fs>
+                </f>
+                <f name="socio_economic_status">
+                  <vColl>
+                    <fs type="professional_activities">
+                      <f name="occupation">
+                        <symbol value="shipbuilder"/>
+                      </f>
+                      <f name="professional_category">
+                        <symbol value="industry_and_transportation"/>
+                      </f>
+                    </fs>
+                    <fs type="socio_economic_other">
+                      <f name="social_class">
+                        <symbol value="upper_class"/>
+                      </f>
+                    </fs>
+                  </vColl>
+                </f>
+                <f name="language">
+                  <default/>
+                </f>
+              </fs>
+            </f>
+          </fs>
+        </person>
+      </listPerson>
+    </body>
+  </text>
+</TEI>

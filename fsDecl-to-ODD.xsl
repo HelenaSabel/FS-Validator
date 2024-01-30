@@ -9,25 +9,22 @@
     <xsl:template match="/">
         <xsl:result-document href="methal_personography.odd">
             <TEI xml:lang="en" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
-                <?TEIVERSION Version 4.3.0. Last updated on
-        31st August 2021, revision b4f72b1ff?>
                 <teiHeader>
                     <fileDesc>
                         <titleStmt>
-                            <title>TEI MeThAL personography</title>
-                            <author>Pablo Ruiz Fabo</author>
-                            <author>Helena Bermúdez Sabel</author>
+                            <title>Title of the project</title>
+                            <author>Author</author>
                         </titleStmt>
                         <publicationStmt>
-                            <publisher>LiLPa - Université de Strasbourg</publisher>
-                            <publisher>MeThAL project</publisher>
+                            <publisher></publisher>
+                            <publisher></publisher>
                             <availability status="free">
                                 <licence target="http://creativecommons.org/licenses/by-nc/4.0/"
                                     >Creative Commons BY-NC</licence>
                             </availability>
                         </publicationStmt>
                         <notesStmt>
-                            <note type="ns">https://methal.eu</note>
+                            <note type="ns">www.url.com</note>
                         </notesStmt>
                         <sourceDesc>
                             <p>Written from scratch.</p>
@@ -36,8 +33,8 @@
                 </teiHeader>
                 <text>
                     <body>
-                        <head>TEI for MeThAL project personography</head>
-                        <schemaSpec ident="tei_methal_personography">
+                        <head>TEI for X</head>
+                        <schemaSpec ident="fs-customization">
                             <moduleRef n="01" key="tei"/>
                             <moduleRef n="02" key="header"/>
                             <moduleRef n="03" key="core"/>
